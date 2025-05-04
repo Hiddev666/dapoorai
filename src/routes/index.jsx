@@ -3,6 +3,7 @@ import Favorite from "../pages/favorite";
 import Home from "../pages/home";
 import Login from "../pages/auth/Login";
 import MainLayout from "../layout/MainLayout";
+import Register from "../pages/auth/Register";
 
 const router = createBrowserRouter([
     {
@@ -13,10 +14,11 @@ const router = createBrowserRouter([
     },
     {
         path: "/auth",
-        element: <MainLayout />,
+        // element: <MainLayout />,
         children: [
             { index: true, element: <Login /> },
-            { path: "login", element: <Login /> }
+            { path: "login", element: <Login /> },
+            { path: "register", element: <Register /> },
         ]
     },
     {

@@ -32,7 +32,7 @@ const Login = () => {
                                 Masuk Dengan Google
                             </button>
                         </div>
-                        <p className="text-center">Belum punya akun? <a href="" className="text-[#D1532D]">Daftar</a></p>
+                        <p className="text-center">Belum punya akun? <a href="register" className="text-[#D1532D]">Daftar</a></p>
                     </div>
                 </div>
             </div>
