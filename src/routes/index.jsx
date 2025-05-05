@@ -4,6 +4,7 @@ import Home from "../pages/home";
 import Login from "../pages/auth/Login";
 import MainLayout from "../layout/MainLayout";
 import Register from "../pages/auth/Register";
+import UserHome from "../pages/user/UserHome";
 
 const router = createBrowserRouter([
     {
@@ -16,17 +17,14 @@ const router = createBrowserRouter([
         path: "/auth",
         // element: <MainLayout />,
         children: [
-            { index: true, element: <Login /> },
             { path: "login", element: <Login /> },
             { path: "register", element: <Register /> },
         ]
     },
     {
-        path: "/u",
-        element: <MainLayout />,
+        path: "/user",
         children: [
-            { index: true, element: <Login /> },
-            { path: "login", element: <Login /> }
+            { index: true, element: <UserHome /> },
         ]
     }
 ])
