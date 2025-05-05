@@ -1,17 +1,72 @@
 import logo from "../../assets/logo.svg"
 import defaultProfilePicture from "../../assets/default-profile-picture.jpg"
+import favorite from "../../assets/favorite.svg"
+import generateIcon from "../../assets/generate-icon.svg"
+import { useState } from "react"
 
 const UserHome = () => {
+
+    const [firstChat, setFirstChat] = useState(true)
+
+    const BottomChat = () => {
+        return (
+            <div className="pb-8 flex justify-center items-center fixed bottom-0 w-full">
+                <div className="w-5/6 md:w-1/2 flex justify-center gap-3">
+                    <input type="text" className="bg-white border-1 border-[#909090] rounded ps-4 p-2 w-full" />
+                    <button className="bg-[#D1532D] w-10 h-10 flex justify-center items-center rounded cursor-pointer">
+                        <img src={generateIcon} alt="Generate" className="w-5" />
+                    </button>
+                </div>
+            </div>
+        )
+    }
+
+    const CenterChat = () => {
+        return (
+            <div className="w-full flex justify-center items-center h-150">
+                <div className="text-center flex flex-col items-center gap-6">
+                    <div>
+                        <h1 className="text-2xl md:text-4xl font-semibold">Ada Bahan Apa Hari Ini, Wahid?</h1>
+                        <p className="text-sm md:text-base">Tulis bahan-bahan masakan yang ada di rumah kamu!</p>
+                    </div>
+                    <div className="w-full flex justify-center gap-3">
+                        <input type="text" className="bg-white border-1 border-[#909090] rounded ps-4 p-2 w-full" />
+                        <button className="bg-[#D1532D] size-10 p-1 flex justify-center items-center rounded cursor-pointer" onClick={() => setFirstChat(false)}>
+                            <img src={generateIcon} alt="Generate" className="w-1/2" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    const FirstChatHandler = () => {
+        if (firstChat) {
+            return <CenterChat />
+        } else {
+            return <BottomChat />
+        }
+    }
+
     return (
         <>
-            <nav className="border-b-1 border-[#909090] py-5 px-15 flex justify-between">
-                <img src={logo} alt="Logo" className="w-30" />
-                <div>
+            <nav className="border-b-1 border-[#909090] py-4 px-10 md:px-15 flex justify-between fixed w-full">
+                <img src={logo} alt="Logo" className="w-26" />
+                <div className="flex gap-5">
+                    <div className="flex gap-2 items-center">
+                        <img src={favorite} alt="Fav" className="h-min" />
+                        <p>Resep Favorit</p>
+                    </div>
                     <div>
                         <img src={defaultProfilePicture} alt="User" className="w-9 border-1 border-[#eaeaea] rounded-full" />
                     </div>
                 </div>
+
             </nav>
+
+            {/* Chat Section */}
+            <FirstChatHandler />
+            {/* <CenterChat /> */}
         </>
     )
 }
