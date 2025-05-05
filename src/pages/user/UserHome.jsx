@@ -3,10 +3,13 @@ import defaultProfilePicture from "../../assets/default-profile-picture.jpg"
 import favorite from "../../assets/favorite.svg"
 import generateIcon from "../../assets/generate-icon.svg"
 import { useState } from "react"
+import { redirect, useNavigate } from "react-router-dom"
 
 const UserHome = () => {
 
     const [firstChat, setFirstChat] = useState(true)
+    const [popupState, setPopupState] = useState(false)
+    const navigate = useNavigate()
 
     const BottomChat = () => {
         return (
@@ -48,6 +51,14 @@ const UserHome = () => {
         }
     }
 
+    const ProfilePopupHandler = () => {
+        if (popupState != false) {
+            setPopupState(false)
+        } else {
+            setPopupState(true)
+        }
+    }
+
     return (
         <>
             <nav className="border-b-1 border-[#909090] py-4 px-10 md:px-15 flex justify-between fixed w-full">
@@ -57,8 +68,13 @@ const UserHome = () => {
                         <img src={favorite} alt="Fav" className="h-min" />
                         <p>Resep Favorit</p>
                     </div>
-                    <div>
+                    <div onClick={ProfilePopupHandler} className="relative cursor-pointer">
                         <img src={defaultProfilePicture} alt="User" className="w-9 border-1 border-[#eaeaea] rounded-full" />
+                        {popupState && (
+                            <div className="bg-white border-1 border-[#909090] rounded px-4 py-2 absolute right-0">
+                                <p onClick={() => navigate("/")}>Logout</p>
+                            </div>
+                        )}
                     </div>
                 </div>
 
