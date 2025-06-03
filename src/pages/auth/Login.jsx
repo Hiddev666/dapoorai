@@ -4,14 +4,16 @@ import googleIcon from "../../assets/google-icon.svg"
 import eye from "../../assets/eye-svgrepo-com.svg"
 import eyeOff from "../../assets/eye-off-svgrepo-com.svg"
 import { useState } from "react"
+import { redirect, useNavigate } from "react-router-dom"
 
 const Login = () => {
 
+    const navigate = useNavigate()
     const [eyeToogle, setEyeToogle] = useState(eye)
     const [passwordType, setPasswordType] = useState("password")
 
-    const eyeToogleHandler = () =>{
-        if(eyeToogle != eye) {
+    const eyeToogleHandler = () => {
+        if (eyeToogle != eye) {
             setEyeToogle(eye)
             setPasswordType("password")
         } else {
@@ -20,41 +22,25 @@ const Login = () => {
         }
     }
 
+    const loginGoogleHandler = () => {
+        window.location.href = "http://localhost:8000/auth/google"
+    }
+
     return (
         <>
-            <div className="h-svh flex flex-col md:flex-row gap-10 md:gap-0 justify-center p-6 md:p-15">
-                <div className="w-full items-center md:items-start md:w-1/2 flex flex-col gap-5">
-                    <img src={logo} alt="dapoorAI Logo" className="w-30 md:w-min" />
-                    <div className="flex justify-center items-end h-full w-full">
-                        <img src={boyIllustration} alt="boy illustration" className="w-1/2 md:w-3/5" />
-                    </div>
-                </div>
+            <div className="h-svh flex flex-col md:flex-row gap-10 md:gap-0 justify-center p-10 md:p-15">
                 <div className="w-full md:w-1/2 flex justify-center items-center md:p-5 ">
-                    <div className="px-6 py-8 border-1 border-[#909090] rounded w-full md:w-4/5 flex flex-col gap-5">
+                    <div className="px-6 py-8 border-1 border-[#909090] border-b-3 rounded w-full md:w-4/5 flex flex-col gap-5 transition-all ease-in-out">
                         <div>
-                            <h2 className="text-3xl font-bold">Masuk</h2>
-                            <p>Hai! Seneng liat kamu lagi! Masak apa hari ini?</p>
+                            <img src={logo} alt="DapoorAI Logo" className="w-35"/>
+                            <p>Hai, Selamat Datang di DapoorAI! Masuk Dulu Yuk!</p>
                         </div>
                         <div>
-                            <form action="" className="flex flex-col gap-2">
-                                <input type="email" name="email" placeholder="Email" className="border-1 border-[#909090] w-full p-2 ps-3 rounded" />
-                                <div className="relative">
-                                    <input type={passwordType} name="password" placeholder="Password" className="border-1 border-[#909090] w-full p-2 ps-3 rounded" />
-                                    <span className="absolute right-0 top-0 h-full mr-3 flex items-center cursor-pointer" onClick={eyeToogleHandler}>
-                                        <img src={eyeToogle} alt="eye" className="w-6"/>
-                                    </span>
-                                </div>
-                                <button type="submit" className="p-2 bg-[#D1532D] text-white font-semibold rounded cursor-pointer w-full">Masuk</button>
-                            </form>
-                        </div>
-                        <p className="text-center text-[#808080]">Atau</p>
-                        <div>
-                            <button type="submit" className="p-2 bg-white border-1 border-[#909090] rounded cursor-pointer w-full flex justify-center items-center gap-2">
+                            <button className="p-2 bg-white border-1 border-[#909090] rounded cursor-pointer w-full flex justify-center items-center gap-2 transition-all ease-in-out hover:border-b-3 hover:-translate-y-1" onClick={loginGoogleHandler}>
                                 <img src={googleIcon} alt="Google" />
                                 Masuk Dengan Google
                             </button>
                         </div>
-                        <p className="text-center">Belum punya akun? <a href="register" className="text-[#D1532D]">Daftar</a></p>
                     </div>
                 </div>
             </div>

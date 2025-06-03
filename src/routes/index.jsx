@@ -3,8 +3,10 @@ import Favorite from "../pages/favorite";
 import Home from "../pages/home";
 import Login from "../pages/auth/Login";
 import MainLayout from "../layout/MainLayout";
-import Register from "../pages/auth/Register";
 import UserHome from "../pages/user/UserHome";
+import Histories from "../pages/user/Histories";
+import UserLayout from "../pages/user/UserLayout";
+import History from "../pages/user/History";
 
 const router = createBrowserRouter([
     {
@@ -18,13 +20,15 @@ const router = createBrowserRouter([
         // element: <MainLayout />,
         children: [
             { path: "login", element: <Login /> },
-            { path: "register", element: <Register /> },
         ]
     },
     {
         path: "/user",
+        element: <UserLayout />,
         children: [
             { index: true, element: <UserHome /> },
+            { path: "histories", element: <Histories /> },
+            { path: "histories/:id", element: <History /> },
         ]
     }
 ])
