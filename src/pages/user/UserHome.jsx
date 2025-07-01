@@ -10,6 +10,8 @@ import axios from "axios"
 import AbsurdInput from "./components/AbsurdInput"
 import ResponsiveMenu from "./components/ResponsiveMenu"
 import Navbar from "./components/Navbar"
+import dotenv from "dotenv"
+dotenv.config()
 
 const UserHome = () => {
 
@@ -32,7 +34,7 @@ const UserHome = () => {
     }, [])
 
     const getUserData = async () => {
-        await axios.get("http://localhost:8000/user", { withCredentials: true })
+        await axios.get(`${process.env.API_ENDPOINT}/user`, { withCredentials: true })
             .then((res) => {
                 setUser(res.data.data)
                 let name = res.data.data.name
@@ -45,11 +47,13 @@ const UserHome = () => {
             })
     }
 
-    const generate = async () => {
+    const generate = async (e) => {
+        e.preventDefault();
         setFirstChat(["h-min", false, "w-full"])
         try {
+            setIsErr(false)
             setLoading(true)
-            await axios.post("http://localhost:8000/user/generate", {
+            await axios.post(`${process.env.API_ENDPOINT}/user/generate`, {
                 ingredients: ingredients
             }, { withCredentials: true })
                 .then((res) => {
@@ -126,12 +130,12 @@ const UserHome = () => {
                         </div>
                     )
                 }
-                <div className="w-full md:w-1/2 flex justify-center gap-3">
+                <form className="w-full md:w-1/2 flex justify-center gap-3" onSubmit={generate}>
                     <input type="text" placeholder="Tulis Bahan-bahan" className={`font-normal bg-white border-1 border-[#909090] rounded ps-4 p-2 transition-all ease-in-out delay-150 duration-1000 ${firstChat[2]} w-2/3 focus:w-full focus:outline-none`} onChange={(e) => setIngredients(e.target.value)} />
-                    <button className="bg-[#D1532D] w-10 h-10 flex justify-center items-center rounded cursor-pointer transition-all ease-in-out duration-300 active:rotate-30" onClick={generate}>
+                    <button type="submit" className="bg-[#D1532D] w-10 h-10 flex justify-center items-center rounded cursor-pointer transition-all ease-in-out duration-300 active:rotate-30">
                         <img src={generateIcon} alt="Generate" className="w-4 transition-all ease-in-out duration-300" />
                     </button>
-                </div>
+                </form>
             </div>
 
             {/* Chat Section */}

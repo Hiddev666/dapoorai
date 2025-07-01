@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import Navbar from "./components/Navbar"
 import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
+import favoriteButton from "../../assets/favorite-button.svg"
+import dotenv from "dotenv"
+dotenv.config()
 
 const History = () => {
 
@@ -21,7 +24,7 @@ const History = () => {
     }, [])
 
     const getUserData = async () => {
-        await axios.get("http://localhost:8000/user", { withCredentials: true })
+        await axios.get(`${process.env.API_ENDPOINT}/user`, { withCredentials: true })
             .then((res) => {
                 setUser(res.data.data)
                 let name = res.data.data.name
@@ -35,7 +38,7 @@ const History = () => {
     }
 
     const getHistory = async () => {
-        await axios.get(`http://localhost:8000/user/histories/${id}`, { withCredentials: true })
+        await axios.get(`${process.env.API_ENDPOINT}/user/histories/${id}`, { withCredentials: true })
             .then((res) => {
                 setHistories(res.data.data)
                 setRecipes(res.data.data.recipe)
@@ -49,16 +52,46 @@ const History = () => {
         if (histories != null) {
             return (
                 recipes.map((recipe) => (
-                    <p>{recipe.nama}</p>
+                    <div className="flex flex-col w-full md:w-2/5">
+                        <div key={recipe.name} className="p-5 py-8 border-1 border-[#909090] rounded rounded-b-none flex flex-col gap-4 w-full h-full">
+                            <h1 className="text-3xl font-bold">{recipe.nama}</h1>
+                            <div className="flex gap-2 flex-wrap">
+                                {
+                                    recipe.bahan.map((bahan) => (
+                                        <p className="text-xs bg-[#D1532D] w-max h-min px-2 py-1 rounded text-white">{bahan}</p>
+                                    ))
+                                }
+                            </div>
+                            <div className="ps-7">
+                                <ul className="list-decimal">
+                                    {
+                                        recipe.langkah.map((langkah) => (
+                                            <li className="text-sm mb-1">{langkah}</li>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="px-8 py-3 text-sm border-1 border-t-0 border-[#909090] bg-[#EAEAEA] rounded-b flex gap-2">
+                            <img src={favoriteButton} alt="Fav" className="h-min cursor-pointer transition-all hover:scale-130" onClick={addFavoriteHandler} />
+                            <p>Tambahkan Ke Favorit</p>
+                        </div>
+                    </div>
                 ))
             )
         }
     }
 
+    const addFavoriteHandler = () => {
+        alert("Add Favorite was Coming Soon!")
+    }
+
     return (
         <>
             <Navbar profilePicture={profilePicture} />
-            <History />
+            <div className="flex flex-col md:flex-row justify-center gap-5 flex-wrap py-8">
+                <History />
+            </div>
         </>
     )
 }

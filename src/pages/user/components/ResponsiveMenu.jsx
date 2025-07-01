@@ -2,10 +2,12 @@ import { useState } from "react"
 import menu from "../../../assets/menu.svg"
 import favorite from "../../../assets/favorite.svg"
 import history from "../../../assets/history-icon.svg"
+import { useNavigate } from "react-router-dom"
 
 const ResponsiveMenu = (props) => {
 
     const [showMenu, setShowMenu] = useState(false)
+    const navigate = useNavigate()
 
     const showMenuHandler = () => {
         if (showMenu) {
@@ -25,11 +27,11 @@ const ResponsiveMenu = (props) => {
                             <img src={props.profilePicture} alt="User" className="w-2/3 border-1 border-[#eaeaea] rounded-full" />
                         </div>
                         <div>
-                            <div className="flex gap-2 items-center cursor-pointer transition-all delay-150 duration-300 hover:py-3 rounded w-full p-1">
+                            <div className="flex gap-2 items-center cursor-pointer transition-all delay-150 duration-300 hover:py-3 rounded w-full p-1" onClick={() => navigate("/user/favorites")}>
                                 <img src={favorite} alt="Fav" className="h-min" />
                                 <p>Resep Favorit</p>
                             </div>
-                            <div className="flex gap-2 items-center cursor-pointer transition-all delay-300 duration-300 hover:py-3 rounded w-full p-1">
+                            <div className="flex gap-2 items-center cursor-pointer transition-all delay-300 duration-300 hover:py-3 rounded w-full p-1" onClick={() => navigate("/user/histories")}>
                                 <img src={history} alt="Fav" className="h-min" />
                                 <p>History</p>
                             </div>

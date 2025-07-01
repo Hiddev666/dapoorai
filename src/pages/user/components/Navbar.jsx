@@ -4,9 +4,11 @@ import history from "../../../assets/history-icon.svg"
 import ResponsiveMenu from "./ResponsiveMenu"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 
 const Navbar = (props) => {
     const navigate = useNavigate()
+    const location = useLocation()
 
     const [popupState, setPopupState] = useState(false)
 
@@ -19,12 +21,14 @@ const Navbar = (props) => {
     }
 
     const logoutHandler = () => {
-        window.location.href = "http://localhost:8000/auth/logout"
+        window.location.href = `${process.env.API_ENDPOINT}/auth/logout`
     }
 
     return (
         <nav className="border-b-1 border-[#909090] py-4 px-10 md:px-30 flex justify-between items-center w-full">
-            <img src={logo} alt="Logo" className="w-26 cursor-pointer" onClick={() => navigate("/user")}/>
+            <img src={logo} alt="Logo" className="w-26 cursor-pointer" onClick={() => {
+                location.pathname != "/user" ? navigate("/user") : navigate(0)
+            }} />
             <ResponsiveMenu profilePicture={props.profilePicture} />
             <div className="hidden md:flex gap-8">
                 <div className="flex gap-2 items-center cursor-pointer transition-all delay-150 duration-300 hover:border-1 hover:px-3 rounded">

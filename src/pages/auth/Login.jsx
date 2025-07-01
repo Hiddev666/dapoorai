@@ -5,6 +5,9 @@ import eye from "../../assets/eye-svgrepo-com.svg"
 import eyeOff from "../../assets/eye-off-svgrepo-com.svg"
 import { useState } from "react"
 import { redirect, useNavigate } from "react-router-dom"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const Login = () => {
 
@@ -23,7 +26,7 @@ const Login = () => {
     }
 
     const loginGoogleHandler = () => {
-        window.location.href = "http://localhost:8000/auth/google"
+        window.location.href = `${process.env.API_ENDPOINT}/auth/google`
     }
 
     return (
