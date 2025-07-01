@@ -32,7 +32,7 @@ const UserHome = () => {
     }, [])
 
     const getUserData = async () => {
-        await axios.get(`${import.meta.env.API_ENDPOINT}/user`, { withCredentials: true })
+        await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/user`, { withCredentials: true })
             .then((res) => {
                 setUser(res.data.data)
                 let name = res.data.data.name
@@ -51,7 +51,7 @@ const UserHome = () => {
         try {
             setIsErr(false)
             setLoading(true)
-            await axios.post(`${import.meta.env.API_ENDPOINT}/user/generate`, {
+            await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/user/generate`, {
                 ingredients: ingredients
             }, { withCredentials: true })
                 .then((res) => {

@@ -23,7 +23,7 @@ const Login = () => {
     }
 
     const loginGoogleHandler = () => {
-        window.location.href = `${import.meta.env.API_ENDPOINT}/auth/google`
+        window.location.href = `${import.meta.env.VITE_API_ENDPOINT}/auth/google`
     }
 
     return (

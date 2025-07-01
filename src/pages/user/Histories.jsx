@@ -20,7 +20,7 @@ const Histories = () => {
     }, [])
 
     const getUserData = async () => {
-        await axios.get(`${import.meta.env.API_ENDPOINT}/user`, { withCredentials: true })
+        await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/user`, { withCredentials: true })
             .then((res) => {
                 setUser(res.data.data)
                 let name = res.data.data.name
@@ -34,7 +34,7 @@ const Histories = () => {
     }
 
     const getHistories = async () => {
-        await axios.get(`${import.meta.env.API_ENDPOINT}/user/histories`, { withCredentials: true })
+        await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/user/histories`, { withCredentials: true })
             .then((res) => {
                 setHistories(res.data.data)
             })
