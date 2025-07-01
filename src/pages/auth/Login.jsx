@@ -5,9 +5,6 @@ import eye from "../../assets/eye-svgrepo-com.svg"
 import eyeOff from "../../assets/eye-off-svgrepo-com.svg"
 import { useState } from "react"
 import { redirect, useNavigate } from "react-router-dom"
-import dotenv from "dotenv"
-
-dotenv.config()
 
 const Login = () => {
 
@@ -26,7 +23,7 @@ const Login = () => {
     }
 
     const loginGoogleHandler = () => {
-        window.location.href = `${process.env.API_ENDPOINT}/auth/google`
+        window.location.href = `${import.meta.env.API_ENDPOINT}/auth/google`
     }
 
     return (
@@ -35,7 +32,7 @@ const Login = () => {
                 <div className="w-full md:w-1/2 flex justify-center items-center md:p-5 ">
                     <div className="px-6 py-8 border-1 border-[#909090] border-b-3 rounded w-full md:w-4/5 flex flex-col gap-5 transition-all ease-in-out">
                         <div>
-                            <img src={logo} alt="DapoorAI Logo" className="w-35"/>
+                            <img src={logo} alt="DapoorAI Logo" className="w-35" />
                             <p>Hai, Selamat Datang di DapoorAI! Masuk Dulu Yuk!</p>
                         </div>
                         <div>

@@ -4,8 +4,6 @@ import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
 import dateFormat, { masks } from "dateformat"
 import searchIcon from "../../assets/search-icon.svg"
-import dotenv from "dotenv"
-dotenv.config()
 
 const Histories = () => {
     const [user, setUser] = useState("")
@@ -22,7 +20,7 @@ const Histories = () => {
     }, [])
 
     const getUserData = async () => {
-        await axios.get(`${process.env.API_ENDPOINT}/user`, { withCredentials: true })
+        await axios.get(`${import.meta.env.API_ENDPOINT}/user`, { withCredentials: true })
             .then((res) => {
                 setUser(res.data.data)
                 let name = res.data.data.name
@@ -36,7 +34,7 @@ const Histories = () => {
     }
 
     const getHistories = async () => {
-        await axios.get(`${process.env.API_ENDPOINT}/user/histories`, { withCredentials: true })
+        await axios.get(`${import.meta.env.API_ENDPOINT}/user/histories`, { withCredentials: true })
             .then((res) => {
                 setHistories(res.data.data)
             })

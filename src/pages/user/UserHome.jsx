@@ -10,8 +10,6 @@ import axios from "axios"
 import AbsurdInput from "./components/AbsurdInput"
 import ResponsiveMenu from "./components/ResponsiveMenu"
 import Navbar from "./components/Navbar"
-import dotenv from "dotenv"
-dotenv.config()
 
 const UserHome = () => {
 
@@ -34,7 +32,7 @@ const UserHome = () => {
     }, [])
 
     const getUserData = async () => {
-        await axios.get(`${process.env.API_ENDPOINT}/user`, { withCredentials: true })
+        await axios.get(`${import.meta.env.API_ENDPOINT}/user`, { withCredentials: true })
             .then((res) => {
                 setUser(res.data.data)
                 let name = res.data.data.name
@@ -53,7 +51,7 @@ const UserHome = () => {
         try {
             setIsErr(false)
             setLoading(true)
-            await axios.post(`${process.env.API_ENDPOINT}/user/generate`, {
+            await axios.post(`${import.meta.env.API_ENDPOINT}/user/generate`, {
                 ingredients: ingredients
             }, { withCredentials: true })
                 .then((res) => {

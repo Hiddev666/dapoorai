@@ -21,7 +21,7 @@ const Navbar = (props) => {
     }
 
     const logoutHandler = () => {
-        window.location.href = `${process.env.API_ENDPOINT}/auth/logout`
+        window.location.href = `${import.meta.env.API_ENDPOINT}/auth/logout`
     }
 
     return (

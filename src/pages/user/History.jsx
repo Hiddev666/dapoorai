@@ -3,8 +3,6 @@ import Navbar from "./components/Navbar"
 import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
 import favoriteButton from "../../assets/favorite-button.svg"
-import dotenv from "dotenv"
-dotenv.config()
 
 const History = () => {
 
@@ -24,7 +22,7 @@ const History = () => {
     }, [])
 
     const getUserData = async () => {
-        await axios.get(`${process.env.API_ENDPOINT}/user`, { withCredentials: true })
+        await axios.get(`${import.meta.env.API_ENDPOINT}/user`, { withCredentials: true })
             .then((res) => {
                 setUser(res.data.data)
                 let name = res.data.data.name
@@ -38,7 +36,7 @@ const History = () => {
     }
 
     const getHistory = async () => {
-        await axios.get(`${process.env.API_ENDPOINT}/user/histories/${id}`, { withCredentials: true })
+        await axios.get(`${import.meta.env.API_ENDPOINT}/user/histories/${id}`, { withCredentials: true })
             .then((res) => {
                 setHistories(res.data.data)
                 setRecipes(res.data.data.recipe)
