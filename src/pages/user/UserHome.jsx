@@ -39,9 +39,10 @@ const UserHome = () => {
                 setUsername(name.split(" ")[0])
                 setProfilePicture(res.data.data.profile_picture)
             })
-            .catch(() => {
+            .catch((err) => {
+                console.log(err)
+                console.log("Misal Diredirect")
                 setUser(null)
-                navigate("/auth/login")
             })
     }
 
