@@ -10,6 +10,7 @@ import axios from "axios"
 import AbsurdInput from "./components/AbsurdInput"
 import ResponsiveMenu from "./components/ResponsiveMenu"
 import Navbar from "./components/Navbar"
+import apiClient from "../../service/axios"
 
 const UserHome = () => {
 
@@ -32,7 +33,7 @@ const UserHome = () => {
     }, [])
 
     const getUserData = async () => {
-        await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/user`, { withCredentials: true })
+        await apiClient.get(`${import.meta.env.VITE_API_ENDPOINT}/user`)
             .then((res) => {
                 console.log(res)
                 console.log(res.data)
