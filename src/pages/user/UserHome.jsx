@@ -32,16 +32,9 @@ const UserHome = () => {
     }, [])
 
     const getUserData = async () => {
-        await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/user`, {
-            headers: {
-                'Access-Control-Allow-Credentials': true,
-                'X-Custom-Header': 'Isi custom',
-                'Content-Type': 'application/json',
-                'Another-Header': 'Value-nya'
-            },
-            withCredentials: true
-        })
+        await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/user`, { withCredentials: true })
             .then((res) => {
+                console.log(res)
                 console.log(res.data)
                 // setUser(res.data.data)
                 // let name = res.data.data.name
