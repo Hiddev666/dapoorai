@@ -34,10 +34,11 @@ const UserHome = () => {
     const getUserData = async () => {
         await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/user`, { withCredentials: true })
             .then((res) => {
-                setUser(res.data.data)
-                let name = res.data.data.name
-                setUsername(name.split(" ")[0])
-                setProfilePicture(res.data.data.profile_picture)
+                console.log(res.data)
+                // setUser(res.data.data)
+                // let name = res.data.data.name
+                // setUsername(name.split(" ")[0])
+                // setProfilePicture(res.data.data.profile_picture)
             })
             .catch((err) => {
                 console.log(err)
